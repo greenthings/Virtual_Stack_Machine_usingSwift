@@ -34,7 +34,7 @@ class VirtualMachine{
 
           let right: Int = stack[stackPointer - 1]
           stackPointer -= 1
-          // You should remove last one, because it is stack machine.
+          // You should remove last one, because it is a stack machine.
           stack.removeLast()
           let left: Int = stack[stackPointer - 1]
           stackPointer -= 1
