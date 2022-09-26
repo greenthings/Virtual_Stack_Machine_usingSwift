@@ -9,23 +9,32 @@ class VirtualMachine{
 
 
   func function(_ program: [String]) {  
+  
+  //Run only when the length of the program is less than the program counter, i.e. exit the while statement when the program ends
 
   while programCount < program.count{
-
+    
+      // Program counter values are used as parameters in the program array and stored in current instruction.  
       let currentInstruction = program[programCount]
-
+      
+      // Divide the way through the switch door according to the recent command.
       switch currentInstruction{
+        // If you want to push something, type-cast the following string as an integer and put it in the stack. 
+        // And raise the stack pointer and program counter for the next current instruction.
         case "PUSH":
           stack.append(Int(program[programCount + 1]) ?? 0)
           stackPointer += 1
           programCount += 1
 
           print("Push: \(stack)")
-
+          
+        // If you want to add, you should pop action that is making two constant such as right and left for adding.
+        // and then add them.
         case "ADD":
 
           let right: Int = stack[stackPointer - 1]
           stackPointer -= 1
+          // You should remove last one, because it is stack machine.
           stack.removeLast()
           let left: Int = stack[stackPointer - 1]
           stackPointer -= 1
@@ -37,7 +46,7 @@ class VirtualMachine{
           stackPointer += 1
 
           print("Add: \(stack)")
-
+        
         case "MINUS":
 
           let right: Int = stack[stackPointer - 1]
@@ -86,6 +95,7 @@ class VirtualMachine{
         default: 
           print("Nothing")  
       }
+      // This is for next instruction.
       programCount += 1
    }       
    print(stack)
